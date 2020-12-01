@@ -4,7 +4,10 @@
 
 package events
 
-import "github.com/jackc/pgtype"
+import (
+	"fmt"
+	"github.com/jackc/pgtype"
+)
 
 type GeoData struct {
 	// Type specifies the geographic resolution of the match type.
@@ -37,4 +40,15 @@ func (g *GeoData) PointCoordinates() pgtype.Point {
 		P:      pgtype.Vec2{X: g.Long.Float64, Y: g.Lat.Float64},
 		Status: pgtype.Present,
 	}
+}
+
+func (g *GeoData) CountryCodeISO31661() (string, error) {
+	if len(g.CountryCode) == 0 {
+		return "", nil
+	}
+	isoCode, ok := FIPS104ToISO31661[g.CountryCode]
+	if !ok {
+		return "", fmt.Errorf("gdelt: unknown FIPS 10-4 country code %#v", g.CountryCode)
+	}
+	return isoCode, nil
 }
