@@ -42,7 +42,7 @@ type Event struct {
 	// will be set to EventCode.
 	EventRootCode  string
 	QuadClass      int
-	GoldsteinScale float64
+	GoldsteinScale NullableFloat64
 	NumMentions    int
 	NumSources     int
 	NumArticles    int

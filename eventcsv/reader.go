@@ -77,9 +77,12 @@ func (r *Reader) Read() (*events.Event, error) {
 		return nil, fmt.Errorf("parse QuadClass %#v", csvRecord[29])
 	}
 
-	event.GoldsteinScale, err = strconv.ParseFloat(csvRecord[30], 64)
-	if err != nil {
-		return nil, fmt.Errorf("parse GoldsteinScale %#v", csvRecord[30])
+	if len(csvRecord[30]) > 0 {
+		event.GoldsteinScale.Valid = true
+		event.GoldsteinScale.Float64, err = strconv.ParseFloat(csvRecord[30], 64)
+		if err != nil {
+			return nil, fmt.Errorf("parse GoldsteinScale %#v", csvRecord[30])
+		}
 	}
 
 	event.NumMentions, err = strconv.Atoi(csvRecord[31])
