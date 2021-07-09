@@ -12,7 +12,7 @@ Requirements:
 Clone this repo or get the library:
 
 ```console
-go get -u github.com/specializedgeneralist/gdelt
+go get -u github.com/SpecializedGeneralist/gdelt
 ```
 
 ## Example
@@ -22,7 +22,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/specializedgeneralist/gdelt"
+	"github.com/SpecializedGeneralist/gdelt"
 )
 
 func main()  {

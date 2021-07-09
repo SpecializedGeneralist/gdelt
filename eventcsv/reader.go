@@ -7,7 +7,7 @@ package eventcsv
 import (
 	"encoding/csv"
 	"fmt"
-	"github.com/specializedgeneralist/gdelt/events"
+	"github.com/SpecializedGeneralist/gdelt/events"
 	"io"
 	"strconv"
 )

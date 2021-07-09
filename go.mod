@@ -2,6 +2,6 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-module github.com/specializedgeneralist/gdelt
+module github.com/SpecializedGeneralist/gdelt
 
 go 1.15
