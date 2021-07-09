@@ -4,10 +4,7 @@
 
 package events
 
-import (
-	"fmt"
-	"github.com/jackc/pgtype"
-)
+import "fmt"
 
 type GeoData struct {
 	// Type specifies the geographic resolution of the match type.
@@ -27,19 +24,6 @@ type GeoData struct {
 	// Long is the centroid longitude of the landmark for mapping.
 	Long      NullableFloat64
 	FeatureID string
-}
-
-func (g *GeoData) PointCoordinates() pgtype.Point {
-	if !g.Lat.Valid || !g.Long.Valid {
-		return pgtype.Point{
-			P:      pgtype.Vec2{X: 0, Y: 0},
-			Status: pgtype.Null,
-		}
-	}
-	return pgtype.Point{
-		P:      pgtype.Vec2{X: g.Long.Float64, Y: g.Lat.Float64},
-		Status: pgtype.Present,
-	}
 }
 
 func (g *GeoData) CountryCodeISO31661() (string, error) {
