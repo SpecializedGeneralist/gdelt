@@ -9,7 +9,7 @@ import (
 	"github.com/specializedgeneralist/gdelt"
 )
 
-func main()  {
+func main() {
 	fmt.Println("Getting latest events from GDELT...")
 	events, err := gdelt.GetLatestEvents()
 	if err != nil {
