@@ -86,22 +86,22 @@ func (d *DataExportCSVZipReference) GetLatestEvents() ([]*events.Event, error) {
 		return nil, fmt.Errorf("new zip reader: %v", err)
 	}
 
-	var events []*events.Event = nil
+	var evs []*events.Event = nil
 
 	for _, zipFile := range zipReader.File {
 		if !strings.HasSuffix(zipFile.Name, ".export.CSV") {
 			continue
 		}
-		if events != nil {
+		if evs != nil {
 			return nil, fmt.Errorf("multiple export CSV files found in Zip archive")
 		}
-		events, err = processCSVZipFile(zipFile)
+		evs, err = processCSVZipFile(zipFile)
 		if err != nil {
 			return nil, err
 		}
 	}
 
-	return events, nil
+	return evs, nil
 }
 
 func processCSVZipFile(zipFile *zip.File) (records []*events.Event, err error) {
